@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ensola â ZÃ¡znam pohovoru</title>
+  <title>Ensola – Záznam pohovoru</title>
   <style>
     :root {
       --green-dark:  #1B5016;
@@ -31,7 +31,7 @@
       flex-direction: column;
     }
 
-    /* ââ Header ââ */
+    /* ── Header ── */
     header {
       background: var(--green-dark);
       border-bottom: 2px solid var(--green-light);
@@ -54,7 +54,7 @@
     .header-text h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: .3px; }
     .header-text p  { font-size: .8rem; color: var(--lime); opacity: .85; }
 
-    /* ââ Meta card ââ */
+    /* ── Meta card ── */
     #meta-section {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -83,7 +83,7 @@
     .badge-medium { background: #f57f17; color: #fff8e1; }
     .badge-low    { background: #b71c1c; color: #ffcdd2; }
 
-    /* ââ Screening results bar ââ */
+    /* ── Screening results bar ── */
     #results-bar {
       background: var(--surface2);
       border-bottom: 1px solid var(--border);
@@ -113,7 +113,7 @@
       line-height: 1;
     }
 
-    /* ââ Conversation ââ */
+    /* ── Conversation ── */
     #conversation {
       flex: 1;
       padding: 28px 32px;
@@ -170,7 +170,7 @@
     .ai-name   { color: var(--lime); }
     .user-name { color: #90caf9; }
 
-    /* ââ States ââ */
+    /* ── States ── */
     #state {
       flex: 1;
       display: flex;
@@ -193,7 +193,7 @@
     #state h2   { font-size: 1.3rem; }
     #state p    { color: var(--muted); max-width: 380px; }
 
-    /* ââ Scrollbar ââ */
+    /* ── Scrollbar ── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -204,8 +204,8 @@
 <header>
   <div class="logo-box">E</div>
   <div class="header-text">
-    <h1>Ensola â Screening kandidÃ¡ta</h1>
-    <p>ZÃ¡znam telefonickÃ©ho pohovoru</p>
+    <h1>Ensola – Screening kandidáta</h1>
+    <p>Záznam telefonického pohovoru</p>
   </div>
 </header>
 
@@ -220,8 +220,8 @@
 <!-- Main content -->
 <div id="state">
   <div class="spinner"></div>
-  <h2>NaÄÃ­tavam zÃ¡znamâ¦</h2>
-  <p>ProsÃ­m, Äakajte.</p>
+  <h2>Načítavam záznam…</h2>
+  <p>Prosím, čakajte.</p>
 </div>
 
 <div id="conversation" style="display:none"></div>
@@ -245,7 +245,7 @@
   }
 
   function fmt(ts) {
-    if (!ts) return 'â';
+    if (!ts) return '–';
     const d = new Date(ts);
     return d.toLocaleString('sk-SK', {
       day:'2-digit', month:'2-digit', year:'numeric',
@@ -254,7 +254,7 @@
   }
 
   function dur(secs) {
-    if (!secs) return 'â';
+    if (!secs) return '–';
     const m = Math.floor(secs / 60);
     const s = secs % 60;
     return `${m}:${String(s).padStart(2,'0')} min`;
@@ -282,9 +282,9 @@
   }
 
   function boolIcon(v) {
-    if (v === true  || v === 'true'  || v === 'Ã¡no' || v === 'yes') return 'â Ãno';
-    if (v === false || v === 'false' || v === 'nie' || v === 'no')  return 'â Nie';
-    return v || 'â';
+    if (v === true  || v === 'true'  || v === 'áno' || v === 'yes') return '✅ Áno';
+    if (v === false || v === 'false' || v === 'nie' || v === 'no')  return '❌ Nie';
+    return v || '–';
   }
 
   async function load() {
@@ -292,7 +292,7 @@
     const callId = params.get('id');
 
     if (!callId) {
-      showState('ð', 'Å½iadne ID hovoru', 'URL musÃ­ obsahovaÅ¥ parameter ?id=<call_id>');
+      showState('🔍', 'Žiadne ID hovoru', 'URL musí obsahovať parameter ?id=<call_id>');
       return;
     }
 
@@ -303,40 +303,40 @@
 
       if (!res.ok) {
         const err = await res.text();
-        showState('â ï¸', 'Chyba naÄÃ­tania', `Server vrÃ¡til: ${res.status} â ${err}`);
+        showState('⚠️', 'Chyba načítania', `Server vrátil: ${res.status} – ${err}`);
         return;
       }
 
       const data = await res.json();
 
-      /* ââ Meta info ââ */
+      /* ── Meta info ── */
       addMeta('ID hovoru', `<span style="font-size:.78rem;opacity:.7">${callId}</span>`);
-      addMeta('ZaÄiatok',  fmt(data.startedAt));
+      addMeta('Začiatok',  fmt(data.startedAt));
       addMeta('Koniec',    fmt(data.endedAt));
       addMeta('Trvanie',   dur(data.call?.durationSeconds ?? data.durationSeconds));
-      addMeta('Stav',      data.status ?? 'â');
-      if (data.customer?.number) addMeta('TelefÃ³n', data.customer.number);
+      addMeta('Stav',      data.status ?? '–');
+      if (data.customer?.number) addMeta('Telefón', data.customer.number);
       metaSec.classList.add('visible');
 
-      /* ââ Analysis / screening results ââ */
+      /* ── Analysis / screening results ── */
       const analysis = data.analysis ?? {};
       const struct   = analysis.structuredData ?? {};
 
       const hodnotenie  = struct.hodnotenie  ?? struct.rating ?? analysis.rating;
       const vysvetlenie = struct.vysvetlenie ?? struct.explanation ?? analysis.summary ?? '';
-      const skusenosti  = struct.skusenosti  ?? struct.skÃºsenosti;
+      const skusenosti  = struct.skusenosti  ?? struct.skúsenosti;
       const suhlasProv  = struct.suhlasProvize ?? struct.suhlas_provize;
       const suhlasCest  = struct.suhlasCestovanie ?? struct.suhlas_cestovanie;
       const lokalita    = struct.lokalita;
-      const nastup      = struct.nastup ?? struct.nÃ¡stup;
+      const nastup      = struct.nastup ?? struct.nástup;
 
       if (hodnotenie !== undefined) {
-        addChip('â­', 'Hodnotenie', ratingBadge(hodnotenie));
-        addChip('ð¼', 'SkÃºsenosti', boolIcon(skusenosti));
-        addChip('ð°', 'SÃºhlas â provÃ­zia', boolIcon(suhlasProv));
-        addChip('ð', 'SÃºhlas â cestovanie', boolIcon(suhlasCest));
-        if (lokalita) addChip('ð', 'Lokalita', lokalita);
-        if (nastup)   addChip('ð', 'NÃ¡stup', nastup);
+        addChip('⭐', 'Hodnotenie', ratingBadge(hodnotenie));
+        addChip('💼', 'Skúsenosti', boolIcon(skusenosti));
+        addChip('💰', 'Súhlas – provízia', boolIcon(suhlasProv));
+        addChip('🚗', 'Súhlas – cestovanie', boolIcon(suhlasCest));
+        if (lokalita) addChip('📍', 'Lokalita', lokalita);
+        if (nastup)   addChip('📅', 'Nástup', nastup);
         resultsBar.classList.add('visible');
       }
 
@@ -349,11 +349,11 @@
         resultsBar.appendChild(div);
       }
 
-      /* ââ Transcript ââ */
+      /* ── Transcript ── */
       const messages = data.messages ?? data.transcript ?? [];
 
       if (!messages.length) {
-        showState('ð­', 'Å½iadny prepis', 'Hovor neobsahuje textovÃ½ zÃ¡znam konverzÃ¡cie.');
+        showState('📭', 'Žiadny prepis', 'Hovor neobsahuje textový záznam konverzácie.');
         return;
       }
 
@@ -375,7 +375,7 @@
         const avatarLabel  = isAI ? 'M'            : 'K';
         const bubbleClass  = isAI ? 'bubble-ai'   : 'bubble-user';
         const nameClass    = isAI ? 'ai-name'      : 'user-name';
-        const speakerLabel = isAI ? 'Marek (AI)'   : 'KandidÃ¡t';
+        const speakerLabel = isAI ? 'Marek (AI)'   : 'Kandidát';
 
         turn.innerHTML = `
           <div class="avatar ${avatarClass}">${avatarLabel}</div>
@@ -388,7 +388,7 @@
       });
 
     } catch (e) {
-      showState('â', 'NeoÄakÃ¡vanÃ¡ chyba', e.message);
+      showState('❌', 'Neočakávaná chyba', e.message);
     }
   }
 
