@@ -102,7 +102,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 </head>
 <body>
 <div class="page-wrapper">
-<div class="logo-area"><img src="https://woodsteel.sk/wp-content/uploads/2023/09/woodsteel-weblogo.png" alt="Ensola"/></div>
+<div class="logo-area"><img src="" alt="Ensola"/></div>
 <div class="card">
 <div class="card-header">
 <h1>Screening hovor s Marekom</h1>
@@ -113,7 +113,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 <div class="steps-title">P&#345;ed zah&#225;jen&#237;m hovoru</div>
 <div class="step"><span class="step-num">1</span><span class="step-text">Ujist&#283;te se, &#382;e jste na klidn&#233;m m&#237;st&#283;</span></div>
 <div class="step"><span class="step-num">2</span><span class="step-text">Povolte p&#345;&#237;stup k mikrofonu, a&#382; V&#225;s prohl&#237;&#382;e&#269; po&#382;&#225;d&#225;</span></div>
-<div class="step"><span class="step-num">3</span><span class="step-text">Klikn&#283;te na tla&#269;&#237;tko n&#237;&#382;e a Petr se V&#225;m ozve</span></div>
+<div class="step"><span class="step-num">3</span><span class="step-text">Klikn&#283;te na tla&#269;&#237;tko ni&#382;&#353;ie a Marek sa v&#225;m ozve</span></div>
 </div>
 
 <!-- AVATAR SECTION - shown during call -->
@@ -157,7 +157,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 <p>Hovor byl &#250;sp&#283;&#353;n&#283; dokon&#269;en. N&#225;&#353; t&#253;m V&#225;s bude brzy kontaktovat s dal&#353;&#237;mi informacemi.</p>
 </div>
 </div>
-<div class="footer">&#169; 2026 <a href="https://woodsteel.sk" target="_blank">Ensola</a> &#183; Zimn&#237; zahrady, pergoly a zaskleni teras</div>
+<div class="footer">&#169; 2026 <a href="https://ensola.sk" target="_blank">Ensola</a> &#183; Zimn&#237; zahrady, pergoly a zaskleni teras</div>
 </div>
 
 <script type="module">
@@ -208,7 +208,7 @@ function setAvatarSpeaking() {
   soundWaves.className = 'sound-waves active speaking';
   mouth.setAttribute('d', 'M20,38 Q30,48 40,38');
   rings.forEach(r => r.classList.add('active'));
-  statusLabel.innerHTML = '<span class="dot dot-green"></span> Petr mluv\u00ed...';
+  statusLabel.innerHTML = '<span class="dot dot-green"></span> Marek hovor\u00ed...';
 }
 
 function setAvatarListening() {
@@ -223,7 +223,7 @@ function setAvatarConnecting() {
   avatarCircle.className = 'avatar-circle';
   soundWaves.className = 'sound-waves';
   mouth.setAttribute('d', 'M24,42 Q30,42 36,42');
-  statusLabel.innerHTML = '<span class="connecting-dots">P\u0159ipojov\u00e1n\u00ed k Petrovi</span>';
+  statusLabel.innerHTML = '<span class="connecting-dots">P\u0159ipojov\u00e1n\u00ed k Marekovi</span>';
 }
 
 function initVapi() {
