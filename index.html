@@ -8,12 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--brown-dark:#3F2211;--brown-mid:#764D24;--brown-light:#8B6914;--gold:#CBAB58;--gold-light:#D4BC7A;--gold-pale:#F5ECD7;--cream:#FDF8F0;--white:#FFFFFF;--text:#555555;--text-light:#888888}
+:root{--brown-dark:#1b5e20;--brown-mid:#2e7d32;--brown-light:#4caf50;--gold:#66bb6a;--gold-light:#a5d6a7;--gold-pale:#e8f5e9;--cream:#f1f8f6;--white:#FFFFFF;--text:#555555;--text-light:#888888}
 body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text);padding:20px}
 .page-wrapper{width:100%;max-width:520px}
 .logo-area{text-align:center;margin-bottom:28px}
 .logo-area img{height:80px;width:auto}
-.card{background:var(--white);border-radius:16px;padding:40px 36px;box-shadow:0 4px 24px rgba(63,34,17,0.08),0 1px 4px rgba(63,34,17,0.04);border:1px solid rgba(203,171,88,0.15)}
+.card{background:var(--white);border-radius:16px;padding:40px 36px;box-shadow:0 4px 24px rgba(46,125,50,0.08),0 1px 4px rgba(46,125,50,0.04);border:1px solid rgba(203,171,88,0.15)}
 .card-header{text-align:center;margin-bottom:28px}
 .card-header h1{font-size:22px;font-weight:600;color:var(--brown-dark);margin-bottom:8px;line-height:1.35}
 .card-header p{font-size:14.5px;color:var(--text);line-height:1.6}
@@ -25,8 +25,8 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 .step-num{flex-shrink:0;width:24px;height:24px;background:var(--brown-dark);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
 .step-text{font-size:13.5px;color:var(--text);line-height:1.5;padding-top:2px}
 .call-area{text-align:center}
-#callBtn{display:inline-flex;align-items:center;gap:10px;padding:16px 44px;font-size:16px;font-weight:600;font-family:'Open Sans',Arial,sans-serif;color:var(--gold);background:var(--brown-dark);border:2px solid var(--gold);border-radius:50px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 4px 16px rgba(63,34,17,0.2);letter-spacing:0.5px}
-#callBtn:hover{background:var(--brown-mid);transform:translateY(-2px);box-shadow:0 6px 24px rgba(63,34,17,0.3)}
+#callBtn{display:inline-flex;align-items:center;gap:10px;padding:16px 44px;font-size:16px;font-weight:600;font-family:'Open Sans',Arial,sans-serif;color:var(--gold);background:var(--brown-dark);border:2px solid var(--gold);border-radius:50px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 4px 16px rgba(46,125,50,0.2);letter-spacing:0.5px}
+#callBtn:hover{background:var(--brown-mid);transform:translateY(-2px);box-shadow:0 6px 24px rgba(46,125,50,0.3)}
 #callBtn:disabled{background:#999;border-color:#bbb;color:#ddd;cursor:not-allowed;box-shadow:none;transform:none}
 #callBtn svg{width:20px;height:20px}
 #callBtn.active{background:#c0392b;border-color:#e74c3c;color:#fff;animation:none;box-shadow:0 4px 16px rgba(192,57,43,0.3)}
@@ -43,7 +43,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 .pulse-ring:nth-child(3){animation-delay:1.2s}
 @keyframes pulse-expand{0%{width:120px;height:120px;opacity:0.6}100%{width:180px;height:180px;opacity:0}}
 
-.avatar-circle{position:relative;z-index:2;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(63,34,17,0.25);border:3px solid var(--gold);transition:border-color 0.5s,box-shadow 0.5s}
+.avatar-circle{position:relative;z-index:2;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(46,125,50,0.25);border:3px solid var(--gold);transition:border-color 0.5s,box-shadow 0.5s}
 .avatar-circle.speaking{border-color:#27ae60;box-shadow:0 8px 32px rgba(39,174,96,0.2)}
 .avatar-circle.listening{border-color:var(--gold);box-shadow:0 8px 32px rgba(203,171,88,0.25)}
 
