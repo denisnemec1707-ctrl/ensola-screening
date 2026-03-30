@@ -102,18 +102,18 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 </head>
 <body>
 <div class="page-wrapper">
-<div class="logo-area"><img src="" alt="Ensola"/></div>
+<div class="logo-area"><div style="font-size:28px;font-weight:700;color:#1b5e20;letter-spacing:1px">ENSOLA</div></div>
 <div class="card">
 <div class="card-header">
 <h1>Screening hovor s Marekom</h1>
-<p>Za chv&#237;li budete mluvit s <span class="highlight">Marekom</span>, na&#353;&#237;m AI asistentem, kter&#253; V&#225;m polo&#382;&#237; n&#283;kolik kr&#225;tk&#253;ch ot&#225;zek ohledn&#283; pozice <span class="highlight">obchodn&#237;ho z&#225;stupce</span>. Hovor trv&#225; p&#345;ibli&#382;n&#283; 10 minut.</p>
+<p>Za chv&#237;&#318;u budete hovori&#357; s <span class="highlight">Marekom</span>, na&#353;&#237;m AI asistentom, ktor&#253; V&#225;m polo&#382;&#237; nieko&#318;ko kr&#225;tkych ot&#225;zok ohledn&#283; pozice <span class="highlight">obchodn&#237;ho z&#225;stupce</span>. Hovor trv&#225; pribli&#382;ne 10 minut.</p>
 </div>
 <div class="divider"></div>
 <div class="steps" id="stepsSection">
 <div class="steps-title">P&#345;ed zah&#225;jen&#237;m hovoru</div>
-<div class="step"><span class="step-num">1</span><span class="step-text">Ujist&#283;te se, &#382;e jste na klidn&#233;m m&#237;st&#283;</span></div>
-<div class="step"><span class="step-num">2</span><span class="step-text">Povolte p&#345;&#237;stup k mikrofonu, a&#382; V&#225;s prohl&#237;&#382;e&#269; po&#382;&#225;d&#225;</span></div>
-<div class="step"><span class="step-num">3</span><span class="step-text">Klikn&#283;te na tla&#269;&#237;tko ni&#382;&#353;ie a Marek sa v&#225;m ozve</span></div>
+<div class="step"><span class="step-num">1</span><span class="step-text">Uistite sa, &#382;e ste na tichom mieste</span></div>
+<div class="step"><span class="step-num">2</span><span class="step-text">Povo&#318;te pr&#237;stup k mikrof&#243;nu, ke&#271; v&#225;s prehliada&#269; po&#382;iada</span></div>
+<div class="step"><span class="step-num">3</span><span class="step-text">Kliknite na tla&#269;idlo ni&#382;&#353;ie a Marek sa v&#225;m ozve</span></div>
 </div>
 
 <!-- AVATAR SECTION - shown during call -->
@@ -146,7 +146,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 <div class="call-area" id="callArea">
 <button id="callBtn">
 <svg id="phoneIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-<span id="btnText">Zah&#225;jit hovor</span>
+<span id="btnText">Za&#269;a&#357; hovor</span>
 </button>
 <div class="timer" id="timer">00:00</div>
 <div id="status"></div>
@@ -157,7 +157,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 <p>Hovor byl &#250;sp&#283;&#353;n&#283; dokon&#269;en. N&#225;&#353; t&#253;m V&#225;s bude brzy kontaktovat s dal&#353;&#237;mi informacemi.</p>
 </div>
 </div>
-<div class="footer">&#169; 2026 <a href="https://ensola.sk" target="_blank">Ensola</a> &#183; Zimn&#237; zahrady, pergoly a zaskleni teras</div>
+<div class="footer">&#169; 2026 <a href="https://ensola.sk" target="_blank">Ensola</a> &#183; Fotovoltika a tepeln&#233; &#269;erpadl&#225;</div>
 </div>
 
 <script type="module">
@@ -223,7 +223,7 @@ function setAvatarConnecting() {
   avatarCircle.className = 'avatar-circle';
   soundWaves.className = 'sound-waves';
   mouth.setAttribute('d', 'M24,42 Q30,42 36,42');
-  statusLabel.innerHTML = '<span class="connecting-dots">P\u0159ipojov\u00e1n\u00ed k Marekovi</span>';
+  statusLabel.innerHTML = '<span class="connecting-dots">Prip\u00e1janie k Marekovi</span>';
 }
 
 function initVapi() {
