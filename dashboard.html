@@ -597,15 +597,15 @@
                     <div class="logo-icon">E</div>
                     <div>
                         <h1>Ensola</h1>
-                        <div class="header-subtitle">HR NÃ¡bor Dashboard</div>
+                        <div class="header-subtitle">HR Nábor Dashboard</div>
                     </div>
                 </div>
                 <div class="header-right">
                     <div class="last-updated">
-                        PoslednÃ¡ aktualizÃ¡cia: <span id="lastUpdatedTime">--:--:--</span>
+                        Posledná aktualizácia: <span id="lastUpdatedTime">--:--:--</span>
                     </div>
                     <button class="refresh-btn" onclick="fetchDashboardData()">
-                        â» ObnoviÅ¥
+                        ↻ Obnoviť
                     </button>
                 </div>
             </div>
@@ -614,26 +614,26 @@
         <!-- Stats Bar -->
         <div class="stats-bar">
             <div class="stat-card">
-                <div class="stat-label">Celkem kandidÃ¡tov</div>
+                <div class="stat-label">Celkem kandidátov</div>
                 <div class="stat-value" id="totalCandidates">0</div>
-                <div class="stat-subtext">RegistrovanÃ½ch v systÃ©me</div>
+                <div class="stat-subtext">Registrovaných v systéme</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">SkrÃ­novanÃ©</div>
+                <div class="stat-label">Skrínované</div>
                 <div class="stat-value" id="screenedCount">0</div>
-                <div class="stat-subtext">VyÅ¡etrenÃ­ kandidÃ¡ti</div>
+                <div class="stat-subtext">Vyšetrení kandidáti</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">PriemernÃ© hodnotenie</div>
+                <div class="stat-label">Priemerné hodnotenie</div>
                 <div class="stat-value" id="averageRating">0.0</div>
-                <div class="stat-subtext">PriemernÃ½ score</div>
+                <div class="stat-subtext">Priemerný score</div>
             </div>
         </div>
 
         <!-- Error Container -->
         <div id="errorContainer" class="error-container hidden">
             <div class="error-message" id="errorMessage"></div>
-            <button class="retry-btn" onclick="fetchDashboardData()">SkÃºsiÅ¥ znovu</button>
+            <button class="retry-btn" onclick="fetchDashboardData()">Skúsiť znovu</button>
         </div>
 
         <!-- Search & Filter Bar -->
@@ -642,22 +642,22 @@
                 <input
                     type="text"
                     id="searchInput"
-                    placeholder="HÄ¾adaÅ¥ podÄ¾a mena, emailu alebo telefÃ³nu..."
+                    placeholder="Hľadať podľa mena, emailu alebo telefónu..."
                     onkeyup="filterTable()"
                 >
-                <span class="search-icon">ð</span>
+                <span class="search-icon">🔍</span>
             </div>
             <div class="filter-group">
-                <button class="filter-btn active" onclick="filterByStatus('')">VÅ¡etci</button>
-                <button class="filter-btn" onclick="filterByStatus('screened')">SkrÃ­novanÃ­</button>
-                <button class="filter-btn" onclick="filterByStatus('pending')">Na ÄakanÃ­</button>
+                <button class="filter-btn active" onclick="filterByStatus('')">Všetci</button>
+                <button class="filter-btn" onclick="filterByStatus('screened')">Skrínovaní</button>
+                <button class="filter-btn" onclick="filterByStatus('pending')">Na čakaní</button>
             </div>
         </div>
 
         <!-- Loading State -->
         <div id="loadingContainer" class="loading-container hidden">
             <div class="spinner"></div>
-            <div class="loading-text">NaÄÃ­tavanie Ãºdajov...</div>
+            <div class="loading-text">Načítavanie údajov...</div>
         </div>
 
         <!-- Table -->
@@ -669,12 +669,12 @@
                             <th>#</th>
                             <th>Meno</th>
                             <th>Email</th>
-                            <th>TelefÃ³n</th>
+                            <th>Telefón</th>
                             <th>Produkty</th>
-                            <th>SkÃºsenosti v obchode</th>
-                            <th>ProvÃ­zny model</th>
+                            <th>Skúsenosti v obchode</th>
+                            <th>Provízny model</th>
                             <th>Zmluvy</th>
-                            <th>Leady/SÃ¡m</th>
+                            <th>Leady/Sám</th>
                             <th>Hodnotenie</th>
                             <th>Screening status</th>
                             <th>Zhrnutie</th>
@@ -689,8 +689,8 @@
 
         <!-- No Data State -->
         <div id="noDataContainer" class="loading-container hidden">
-            <div class="no-data-icon">ð</div>
-            <div class="no-data">ZatiaÄ¾ Å¾iadni kandidÃ¡ti. Ãdaje sa naÄÃ­tajÃº po pripojenÃ­ zdroja.</div>
+            <div class="no-data-icon">📋</div>
+            <div class="no-data">Zatiaľ žiadni kandidáti. Údaje sa načítajú po pripojení zdroja.</div>
         </div>
     </div>
 
@@ -754,7 +754,7 @@
                     loadingContainer.classList.add('hidden');
                     errorContainer.classList.remove('hidden');
                     document.getElementById('errorMessage').textContent =
-                        `Chyba pri naÄÃ­tavanÃ­ Ãºdajov: ${error.message}`;
+                        `Chyba pri načítavaní údajov: ${error.message}`;
                 });
         }
 
@@ -779,7 +779,7 @@
             filteredCandidates = applyFilters();
 
             if (filteredCandidates.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 30px; color: var(--medium-gray);">Å½iadni kandidÃ¡ti nevyhovujÃº kritÃ©riÃ¡m filtra.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="12" style="text-align: center; padding: 30px; color: var(--medium-gray);">Žiadni kandidáti nevyhovujú kritériám filtra.</td></tr>';
                 return;
             }
 
@@ -808,7 +808,7 @@
                     <td><span class="status-badge ${statusClass}">${statusLabel}</span></td>
                     <td>
                         <div class="summary-cell">
-                            ${escapeHtml(summary)}${summary.length > 0 ? '<span class="expand-icon">â</span>' : ''}
+                            ${escapeHtml(summary)}${summary.length > 0 ? '<span class="expand-icon">→</span>' : ''}
                         </div>
                     </td>
                 `;
@@ -830,7 +830,7 @@
                                     <div class="detail-value"><a href="mailto:${escapeHtml(candidate.email)}">${escapeHtml(candidate.email || 'N/A')}</a></div>
                                 </div>
                                 <div class="detail-group">
-                                    <div class="detail-label">TelefÃ³n</div>
+                                    <div class="detail-label">Telefón</div>
                                     <div class="detail-value"><a href="tel:${escapeHtml(candidate.phone)}">${escapeHtml(candidate.phone || 'N/A')}</a></div>
                                 </div>
                                 <div class="detail-group">
@@ -846,11 +846,11 @@
                                     <div class="detail-value">${escapeHtml(candidate.products || 'N/A')}</div>
                                 </div>
                                 <div class="detail-group">
-                                    <div class="detail-label">SkÃºsenosti v obchode</div>
+                                    <div class="detail-label">Skúsenosti v obchode</div>
                                     <div class="detail-value">${escapeHtml(candidate.tradeExperience || 'N/A')}</div>
                                 </div>
                                 <div class="detail-group">
-                                    <div class="detail-label">ProvÃ­zny model</div>
+                                    <div class="detail-label">Provízny model</div>
                                     <div class="detail-value">${escapeHtml(candidate.commissionModel || 'N/A')}</div>
                                 </div>
                                 <div class="detail-group">
@@ -858,7 +858,7 @@
                                     <div class="detail-value">${escapeHtml(candidate.contracts || 'N/A')}</div>
                                 </div>
                                 <div class="detail-group">
-                                    <div class="detail-label">Leady/SÃ¡m</div>
+                                    <div class="detail-label">Leady/Sám</div>
                                     <div class="detail-value">${escapeHtml(candidate.leadsMethod || 'N/A')}</div>
                                 </div>
                             </div>
@@ -932,11 +932,11 @@
         // Get status label
         function getStatusLabel(status) {
             const labels = {
-                'screened': 'SkrÃ­novanÃ½',
-                'pending': 'Na ÄakanÃ­',
-                'rejected': 'ZamietnutÃ½'
+                'screened': 'Skrínovaný',
+                'pending': 'Na čakaní',
+                'rejected': 'Zamietnutý'
             };
-            return labels[status] || 'NeznÃ¡my';
+            return labels[status] || 'Neznámy';
         }
 
         // Update last updated time
