@@ -1,346 +1,337 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ensola - Screening hovor s Marekom</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--brown-dark:#1b5e20;--brown-mid:#2e7d32;--brown-light:#4caf50;--gold:#66bb6a;--gold-light:#a5d6a7;--gold-pale:#e8f5e9;--cream:#f1f8f6;--white:#FFFFFF;--text:#555555;--text-light:#888888}
-body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text);padding:20px}
-.page-wrapper{width:100%;max-width:520px}
-.logo-area{text-align:center;margin-bottom:28px}
-.logo-area img{height:80px;width:auto}
-.card{background:var(--white);border-radius:16px;padding:40px 36px;box-shadow:0 4px 24px rgba(46,125,50,0.08),0 1px 4px rgba(46,125,50,0.04);border:1px solid rgba(203,171,88,0.15)}
-.card-header{text-align:center;margin-bottom:28px}
-.card-header h1{font-size:22px;font-weight:600;color:var(--brown-dark);margin-bottom:8px;line-height:1.35}
-.card-header p{font-size:14.5px;color:var(--text);line-height:1.6}
-.card-header .highlight{color:var(--brown-mid);font-weight:600}
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-pale),var(--gold),var(--gold-pale),transparent);margin:24px 0}
-.steps{margin-bottom:28px}
-.steps-title{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:600;margin-bottom:14px}
-.step{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
-.step-num{flex-shrink:0;width:24px;height:24px;background:var(--brown-dark);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-top:1px}
-.step-text{font-size:13.5px;color:var(--text);line-height:1.5;padding-top:2px}
-.call-area{text-align:center}
-#callBtn{display:inline-flex;align-items:center;gap:10px;padding:16px 44px;font-size:16px;font-weight:600;font-family:'Open Sans',Arial,sans-serif;color:var(--gold);background:var(--brown-dark);border:2px solid var(--gold);border-radius:50px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 4px 16px rgba(46,125,50,0.2);letter-spacing:0.5px}
-#callBtn:hover{background:var(--brown-mid);transform:translateY(-2px);box-shadow:0 6px 24px rgba(46,125,50,0.3)}
-#callBtn:disabled{background:#999;border-color:#bbb;color:#ddd;cursor:not-allowed;box-shadow:none;transform:none}
-#callBtn svg{width:20px;height:20px}
-#callBtn.active{background:#c0392b;border-color:#e74c3c;color:#fff;animation:none;box-shadow:0 4px 16px rgba(192,57,43,0.3)}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ensola – AI Screening Pohovor</title>
+  <style>
+    :root {
+      --green-dark: #163300;
+      --green-main: #89ea5f;
+      --green-pale: #f0f7ea;
+      --green-mid: #5cb82f;
+      --text-dark: #1a2a0d;
+      --text-muted: #4a6630;
+    }
 
-/* ===== AVATAR SECTION ===== */
-.avatar-section{display:none;flex-direction:column;align-items:center;gap:16px;margin-bottom:20px}
-.avatar-section.visible{display:flex}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-.avatar-container{position:relative;width:120px;height:120px}
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--green-pale);
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-.pulse-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;border:2px solid var(--gold);opacity:0;pointer-events:none}
-.pulse-ring.active{animation:pulse-expand 2s ease-out infinite}
-.pulse-ring:nth-child(2){animation-delay:0.6s}
-.pulse-ring:nth-child(3){animation-delay:1.2s}
-@keyframes pulse-expand{0%{width:120px;height:120px;opacity:0.6}100%{width:180px;height:180px;opacity:0}}
+    header {
+      background: var(--green-dark);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(22,51,0,0.18);
+    }
 
-.avatar-circle{position:relative;z-index:2;width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--brown-dark),var(--brown-mid));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(46,125,50,0.25);border:3px solid var(--gold);transition:border-color 0.5s,box-shadow 0.5s}
-.avatar-circle.speaking{border-color:#27ae60;box-shadow:0 8px 32px rgba(39,174,96,0.2)}
-.avatar-circle.listening{border-color:var(--gold);box-shadow:0 8px 32px rgba(203,171,88,0.25)}
+    header img.logo { height: 44px; width: auto; }
 
-.avatar-face{width:60px;height:60px}
-.avatar-face .head{fill:var(--gold)}
-.avatar-face .eye{fill:var(--brown-dark);transition:ry 0.15s}
-.avatar-face .mouth{fill:none;stroke:var(--brown-dark);stroke-width:2;stroke-linecap:round;transition:d 0.3s}
+    header .tagline {
+      color: var(--green-main);
+      font-size: 13px;
+      font-weight: 500;
+      opacity: 0.9;
+      letter-spacing: 0.5px;
+    }
 
-.sound-waves{display:flex;align-items:center;gap:3px;height:32px;opacity:0;transition:opacity 0.3s}
-.sound-waves.active{opacity:1}
-.wave-bar{width:4px;height:8px;background:var(--gold);border-radius:2px;transition:height 0.1s}
-.sound-waves.speaking .wave-bar{animation:wave-speak 0.4s ease-in-out infinite alternate}
-.sound-waves.listening .wave-bar{background:var(--brown-mid);animation:wave-listen 0.6s ease-in-out infinite alternate}
-.wave-bar:nth-child(1){animation-delay:0s}
-.wave-bar:nth-child(2){animation-delay:0.05s}
-.wave-bar:nth-child(3){animation-delay:0.1s}
-.wave-bar:nth-child(4){animation-delay:0.15s}
-.wave-bar:nth-child(5){animation-delay:0.2s}
-.wave-bar:nth-child(6){animation-delay:0.15s}
-.wave-bar:nth-child(7){animation-delay:0.1s}
-@keyframes wave-speak{0%{height:6px}100%{height:28px}}
-@keyframes wave-listen{0%{height:4px}100%{height:16px}}
+    .accent-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--green-main), var(--green-mid));
+    }
 
-.status-label{font-size:14px;color:var(--text);font-weight:500;min-height:22px;text-align:center;transition:all 0.3s}
-.status-label .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;animation:blink 1.4s infinite}
-.dot-green{background:#27ae60}
-.dot-gold{background:var(--gold)}
+    .hero {
+      background: linear-gradient(160deg, var(--green-dark) 0%, #1e4a05 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 52px;
+    }
 
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+    .hero h1 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
 
-.connecting-dots::after{content:'';animation:dots 1.5s steps(4,end) infinite}
-@keyframes dots{0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}}
+    .hero h1 span { color: var(--green-main); }
 
-.timer{font-size:32px;font-weight:300;color:var(--brown-dark);margin-top:4px;font-variant-numeric:tabular-nums;display:none;letter-spacing:2px}
-#status{margin-top:14px;font-size:13.5px;color:var(--text-light);min-height:20px;text-align:center}
+    .hero p {
+      font-size: 17px;
+      opacity: 0.88;
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.6;
+    }
 
-.done-message{display:none;text-align:center;padding:20px}
-.done-message .checkmark{width:56px;height:56px;background:var(--gold-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-.done-message .checkmark svg{width:28px;height:28px;color:var(--brown-mid)}
-.done-message h2{font-size:18px;color:var(--brown-dark);font-weight:600;margin-bottom:8px}
-.done-message p{font-size:14px;color:var(--text);line-height:1.6}
-.footer{text-align:center;margin-top:24px;font-size:11.5px;color:var(--text-light);letter-spacing:0.3px}
-.footer a{color:var(--brown-mid);text-decoration:none}
+    #call-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green-main);
+      color: var(--green-dark);
+      border: none;
+      border-radius: 50px;
+      padding: 16px 40px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(137,234,95,0.35);
+      letter-spacing: 0.3px;
+      position: relative;
+    }
 
-@media(max-width:560px){
-  .card{padding:28px 22px}
-  .card-header h1{font-size:19px}
-  #callBtn{padding:14px 36px;font-size:15px}
-  .avatar-container{width:100px;height:100px}
-  .avatar-circle{width:100px;height:100px}
-  .avatar-face{width:50px;height:50px}
-  .pulse-ring{width:100px;height:100px}
-  @keyframes pulse-expand{0%{width:100px;height:100px;opacity:0.6}100%{width:160px;height:160px;opacity:0}}
-}
-</style>
+    #call-button:hover {
+      background: #a3f070;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(137,234,95,0.45);
+    }
+
+    #call-button:active { transform: translateY(0); }
+
+    #call-button.active {
+      background: #e74c3c;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(231,76,60,0.35);
+    }
+
+    #call-button .btn-icon { font-size: 20px; line-height: 1; }
+
+    #status-box { margin-top: 22px; min-height: 26px; }
+
+    #status-message {
+      display: inline-block;
+      background: rgba(137,234,95,0.15);
+      border: 1px solid rgba(137,234,95,0.4);
+      color: var(--green-main);
+      border-radius: 20px;
+      padding: 6px 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    #status-message:empty { display: none; }
+
+    .pulse-ring {
+      display: none;
+      position: absolute;
+      inset: -8px;
+      border-radius: 50px;
+      border: 3px solid var(--green-main);
+      animation: pulse 1.6s infinite;
+      pointer-events: none;
+    }
+
+    #call-button.active .pulse-ring { display: block; }
+
+    @keyframes pulse {
+      0%   { opacity: 0.8; transform: scale(1); }
+      70%  { opacity: 0;   transform: scale(1.14); }
+      100% { opacity: 0;   transform: scale(1.14); }
+    }
+
+    .info-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 24px 48px;
+      width: 100%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 32px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(22,51,0,0.08);
+      border-top: 4px solid var(--green-main);
+    }
+
+    .card-icon { font-size: 32px; margin-bottom: 14px; }
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .card p { font-size: 14px; color: var(--text-muted); line-height: 1.55; }
+
+    .divider {
+      height: 1px;
+      background: rgba(22,51,0,0.1);
+      max-width: 860px;
+      margin: 0 auto;
+      width: calc(100% - 48px);
+    }
+
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 28px 24px;
+      margin-top: auto;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer strong { color: var(--green-main); font-weight: 600; }
+    footer a { color: rgba(255,255,255,0.75); text-decoration: none; }
+    footer a:hover { color: var(--green-main); }
+
+    @media (max-width: 540px) {
+      header { padding: 14px 20px; }
+      .hero { padding: 44px 20px 40px; }
+      #call-button { padding: 14px 30px; font-size: 15px; }
+    }
+  </style>
 </head>
 <body>
-<div class="page-wrapper">
-<div class="logo-area"><div style="font-size:28px;font-weight:700;color:#1b5e20;letter-spacing:1px">ENSOLA</div></div>
-<div class="card">
-<div class="card-header">
-<h1>Screening hovor s Marekom</h1>
-<p>Za chv&#237;&#318;u budete hovori&#357; s <span class="highlight">Marekom</span>, na&#353;&#237;m AI asistentom, ktor&#253; V&#225;m polo&#382;&#237; nieko&#318;ko kr&#225;tkych ot&#225;zok oh&#318;adom poz&#237;cie <span class="highlight">obchodn&#233;ho z&#225;stupcu</span>. Hovor trv&#225; pribli&#382;ne 10 minut.</p>
-</div>
-<div class="divider"></div>
-<div class="steps" id="stepsSection">
-<div class="steps-title">Pred za&#269;at&#237;m hovoru</div>
-<div class="step"><span class="step-num">1</span><span class="step-text">Uistite sa, &#382;e ste na tichom mieste</span></div>
-<div class="step"><span class="step-num">2</span><span class="step-text">Povo&#318;te pr&#237;stup k mikrof&#243;nu, ke&#271; v&#225;s prehliada&#269; po&#382;iada</span></div>
-<div class="step"><span class="step-num">3</span><span class="step-text">Kliknite na tla&#269;idlo ni&#382;&#353;ie a Marek sa v&#225;m ozve</span></div>
-</div>
 
-<!-- AVATAR SECTION - shown during call -->
-<div class="avatar-section" id="avatarSection">
-<div class="avatar-container">
-<div class="pulse-ring" id="ring1"></div>
-<div class="pulse-ring" id="ring2"></div>
-<div class="pulse-ring" id="ring3"></div>
-<div class="avatar-circle" id="avatarCircle">
-<svg class="avatar-face" viewBox="0 0 60 60" id="avatarFace">
-<circle class="head" cx="30" cy="30" r="28"/>
-<ellipse class="eye" id="leftEye" cx="20" cy="25" rx="3" ry="3.5"/>
-<ellipse class="eye" id="rightEye" cx="40" cy="25" rx="3" ry="3.5"/>
-<path class="mouth" id="mouth" d="M20,40 Q30,46 40,40"/>
-</svg>
-</div>
-</div>
-<div class="sound-waves" id="soundWaves">
-<div class="wave-bar"></div>
-<div class="wave-bar"></div>
-<div class="wave-bar"></div>
-<div class="wave-bar"></div>
-<div class="wave-bar"></div>
-<div class="wave-bar"></div>
-<div class="wave-bar"></div>
-</div>
-<div class="status-label" id="statusLabel"></div>
-</div>
+  <header>
+    <img class="logo"
+      src="https://www.ensola.sk/wp-content/uploads/2025/04/cropped-Untitledl-removebg-preview-300x83.png"
+      alt="Ensola" />
+    <span class="tagline">Kariéra &amp; Nábor</span>
+  </header>
+  <div class="accent-bar"></div>
 
-<div class="call-area" id="callArea">
-<button id="callBtn">
-<svg id="phoneIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-<span id="btnText">Za&#269;a&#357; hovor</span>
-</button>
-<div class="timer" id="timer">00:00</div>
-<div id="status"></div>
-</div>
-<div class="done-message" id="doneMessage">
-<div class="checkmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-<h2>&#270;akujeme za V&#225;&#353; &#269;as!</h2>
-<p>Hovor bol &#250;spe&#353;ne dokon&#269;en. N&#225;&#353; t&#253;m V&#225;s bude brzy kontaktovat s dal&#353;&#237;mi informacemi.</p>
-</div>
-</div>
-<div class="footer">&#169; 2026 <a href="https://ensola.sk" target="_blank">Ensola</a> &#183; Fotovoltika a tepeln&#233; &#269;erpadl&#225;</div>
-</div>
+  <section class="hero">
+    <h1>Vitajte na <span>AI Screening</span> pohovore</h1>
+    <p>
+      Stlačte tlaČidlo nižšie a začte pohovor s naším AI asistentom.
+      Pohovor trvá 5–10 minút a môžete ho absolvovať kedykoľvek.
+    </p>
+    <button id="call-button" onclick="toggleCall()">
+      <div class="pulse-ring"></div>
+      <span class="btn-icon">🎙️</span>
+      <span id="btn-label">Začať pohovor</span>
+    </button>
+    <div id="status-box"><span id="status-message"></span></div>
+  </section>
 
-<script type="module">
-import VapiModule from 'https://cdn.jsdelivr.net/npm/@vapi-ai/web@2.3.10/+esm';
-const Vapi = VapiModule.default;
+  <section class="info-section">
+    <h2 class="section-title">Ako to funguje?</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🎧</div>
+        <h3>Pripravte si slúchadlá</h3>
+        <p>Pre najlepší zážitok odporúčame používať slúchadlá alebo headset. Mikrófón vášho zariadenia tiež postačí.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>AI asistent</h3>
+        <p>Náš AI asistent vám položí niekoľko otázok týkajúcich sa vašich skúseností a motivácie.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <h3>Trvanie 5–10 minút</h3>
+        <p>Pohovor je krátky a štruktúrovaný. Odpovedajte prirodzene a v pohode – nie je to test.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📩</div>
+        <h3>Čo nasleduje</h3>
+        <p>Po pohovore vás náš tím skontaktuje s ďalšími informáciami o výberovom procese.</p>
+      </div>
+    </div>
+  </section>
 
-const VAPI_PUBLIC_KEY = 'bd9aedcb-bcac-4ba0-8a79-b5f931074080';
-const ASSISTANT_ID = 'bf490c3b-0264-4189-8b90-36ef8cc6a3b2';
-    // Extract candidate email from URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const candidateEmail = urlParams.get('email') || '';
+  <div class="divider"></div>
 
+  <footer>
+    <p><strong>Ensola s.r.o.</strong></p>
+    <p>Priehon 112/37, 972 05 Sebedrážie &nbsp;|&nbsp; IČO: 53&nbsp;208&nbsp;951</p>
+    <p>
+      Tel: <a href="tel:+421905895207">+421 905 895 207</a>
+      &nbsp;|&nbsp;
+      <a href="mailto:info@ensola.sk">info@ensola.sk</a>
+      &nbsp;|&nbsp;
+      <a href="https://www.ensola.sk" target="_blank">www.ensola.sk</a>
+    </p>
+    <p style="margin-top:10px;font-size:11px;opacity:0.55;">© 2025 Ensola s.r.o. Všetky práva vyhradené.</p>
+  </footer>
 
-let vapi = null;
-let timerInterval = null;
-let seconds = 0;
-let isActive = false;
-let blinkInterval = null;
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.js"></script>
+  <script>
+    const VAPI_PUBLIC_KEY = 'bd9aedcb-bcac-4ba0-8a79-b5f931074080';
+    const ASSISTANT_ID    = 'bf490c3b-0264-4189-8b90-36ef8cc6a3b2';
+    let vapi = null;
+    let callActive = false;
 
-const avatarSection = document.getElementById('avatarSection');
-const avatarCircle = document.getElementById('avatarCircle');
-const soundWaves = document.getElementById('soundWaves');
-const statusLabel = document.getElementById('statusLabel');
-const mouth = document.getElementById('mouth');
-const leftEye = document.getElementById('leftEye');
-const rightEye = document.getElementById('rightEye');
-const rings = [document.getElementById('ring1'), document.getElementById('ring2'), document.getElementById('ring3')];
-
-function startBlinking() {
-  blinkInterval = setInterval(() => {
-    leftEye.setAttribute('ry', '0.5');
-    rightEye.setAttribute('ry', '0.5');
-    setTimeout(() => {
-      leftEye.setAttribute('ry', '3.5');
-      rightEye.setAttribute('ry', '3.5');
-    }, 150);
-  }, 3000 + Math.random() * 2000);
-}
-
-function stopBlinking() {
-  clearInterval(blinkInterval);
-  leftEye.setAttribute('ry', '3.5');
-  rightEye.setAttribute('ry', '3.5');
-}
-
-function setAvatarSpeaking() {
-  avatarCircle.className = 'avatar-circle speaking';
-  soundWaves.className = 'sound-waves active speaking';
-  mouth.setAttribute('d', 'M20,38 Q30,48 40,38');
-  rings.forEach(r => r.classList.add('active'));
-  statusLabel.innerHTML = '<span class="dot dot-green"></span> Marek hovor\u00ed...';
-}
-
-function setAvatarListening() {
-  avatarCircle.className = 'avatar-circle listening';
-  soundWaves.className = 'sound-waves active listening';
-  mouth.setAttribute('d', 'M22,42 Q30,44 38,42');
-  rings.forEach(r => r.classList.remove('active'));
-  statusLabel.innerHTML = '<span class="dot dot-gold"></span> Poslouch\u00e1m V\u00e1s...';
-}
-
-function setAvatarConnecting() {
-  avatarCircle.className = 'avatar-circle';
-  soundWaves.className = 'sound-waves';
-  mouth.setAttribute('d', 'M24,42 Q30,42 36,42');
-  statusLabel.innerHTML = '<span class="connecting-dots">Prip\u00e1janie k Marekovi</span>';
-}
-
-function initVapi() {
-  vapi = new Vapi(VAPI_PUBLIC_KEY);
-
-  vapi.on('call-start', () => {
-    setActiveState(true);
-    setAvatarSpeaking();
-    startTimer();
-    startBlinking();
-  });
-
-  vapi.on('call-end', () => {
-    setActiveState(false);
-    stopTimer();
-    stopBlinking();
-    showDoneState();
-  });
-
-  vapi.on('speech-start', () => {
-    setAvatarSpeaking();
-  });
-
-  vapi.on('speech-end', () => {
-    if (isActive) {
-      setAvatarListening();
+    function setStatus(msg) {
+      document.getElementById('status-message').textContent = msg;
     }
-  });
 
-  vapi.on('error', (e) => {
-    console.error('Vapi error:', e);
-    setActiveState(false);
-    stopTimer();
-    stopBlinking();
-    avatarSection.classList.remove('visible');
-    document.getElementById('stepsSection').style.display = '';
-    document.getElementById('status').textContent = 'Do\u0161lo k chybe. Obnovte str\u00e1nku a sk\u00faste znova.';
-    document.getElementById('callBtn').disabled = false;
-  });
-}
+    async function toggleCall() {
+      if (callActive) { stopCall(); } else { await startCall(); }
+    }
 
-async function toggleCall() {
-  if (isActive) {
-    if (vapi) vapi.stop();
-    return;
-  }
-  const btn = document.getElementById('callBtn');
-  btn.disabled = true;
-  document.getElementById('status').textContent = '';
-
-  document.getElementById('stepsSection').style.display = 'none';
-  avatarSection.classList.add('visible');
-  setAvatarConnecting();
-
-  try {
-    if (!vapi) initVapi();
-    // Request microphone permission first to avoid audio timeout
-
-    await navigator.mediaDevices.getUserMedia({ audio: true });
-
-    await vapi.start(ASSISTANT_ID, {
-
-      metadata: {
-
-        candidateEmail: candidateEmail
-
+    async function startCall() {
+      const btn = document.getElementById('call-button');
+      const label = document.getElementById('btn-label');
+      setStatus('Pripájam sa…');
+      btn.disabled = true;
+      try {
+        if (!vapi) {
+          vapi = new Vapi(VAPI_PUBLIC_KEY);
+          vapi.on('call-start', () => {
+            callActive = true;
+            btn.classList.add('active');
+            btn.disabled = false;
+            label.textContent = 'Ukončiť pohovor';
+            document.querySelector('.btn-icon').textContent = '⏹️';
+            setStatus('Pohovor prebieha…');
+          });
+          vapi.on('call-end', () => {
+            callActive = false;
+            btn.classList.remove('active');
+            btn.disabled = false;
+            label.textContent = 'Začať pohovor';
+            document.querySelector('.btn-icon').textContent = '🎙️';
+            setStatus('Pohovor ukončený. Ďakujeme!');
+          });
+          vapi.on('error', (err) => {
+            console.error('VAPI error:', err);
+            callActive = false;
+            btn.classList.remove('active');
+            btn.disabled = false;
+            label.textContent = 'Začať pohovor';
+            document.querySelector('.btn-icon').textContent = '🎙️';
+            setStatus('Chyba pripojenia. Skúste znova.');
+          });
+        }
+        await vapi.start(ASSISTANT_ID);
+      } catch (err) {
+        console.error('Start error:', err);
+        btn.disabled = false;
+        setStatus('Chyba: ' + err.message);
       }
+    }
 
-    });
-  } catch (e) {
-    console.error('Start error:', e);
-    avatarSection.classList.remove('visible');
-    document.getElementById('stepsSection').style.display = '';
-    document.getElementById('status').textContent = 'Nepodarilo se za\u010da\u0165 hovor. Skontrolujte mikrof&#243;n.';
-    btn.disabled = false;
-  }
-}
-
-function setActiveState(a) {
-  isActive = a;
-  const btn = document.getElementById('callBtn');
-  const txt = document.getElementById('btnText');
-  const icon = document.getElementById('phoneIcon');
-  btn.disabled = false;
-  if (a) {
-    btn.classList.add('active');
-    txt.textContent = 'Ukon\u010dit hovor';
-    icon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
-    document.getElementById('timer').style.display = 'block';
-  } else {
-    btn.classList.remove('active');
-    txt.textContent = 'Zah\u00e1jit hovor';
-    icon.innerHTML = '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>';
-  }
-}
-
-function showDoneState() {
-  document.getElementById('callArea').style.display = 'none';
-  avatarSection.classList.remove('visible');
-  document.getElementById('doneMessage').style.display = 'block';
-}
-
-function startTimer() {
-  seconds = 0;
-  updateTimerDisplay();
-  timerInterval = setInterval(() => { seconds++; updateTimerDisplay(); }, 1000);
-}
-
-function stopTimer() { clearInterval(timerInterval); }
-
-function updateTimerDisplay() {
-  const m = Math.floor(seconds / 60).toString().padStart(2, '0');
-  const s = (seconds % 60).toString().padStart(2, '0');
-  document.getElementById('timer').textContent = m + ':' + s;
-}
-
-document.getElementById('callBtn').addEventListener('click', toggleCall);
-</script>
+    function stopCall() { if (vapi) vapi.stop(); }
+  </script>
 </body>
 </html>
