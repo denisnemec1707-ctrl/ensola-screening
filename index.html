@@ -110,7 +110,7 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 </div>
 <div class="divider"></div>
 <div class="steps" id="stepsSection">
-<div class="steps-title">P&#345;ed zah&#225;jen&#237;m hovoru</div>
+<div class="steps-title">Pred za&#269;at&#237;m hovoru</div>
 <div class="step"><span class="step-num">1</span><span class="step-text">Uistite sa, &#382;e ste na tichom mieste</span></div>
 <div class="step"><span class="step-num">2</span><span class="step-text">Povo&#318;te pr&#237;stup k mikrof&#243;nu, ke&#271; v&#225;s prehliada&#269; po&#382;iada</span></div>
 <div class="step"><span class="step-num">3</span><span class="step-text">Kliknite na tla&#269;idlo ni&#382;&#353;ie a Marek sa v&#225;m ozve</span></div>
@@ -153,8 +153,8 @@ body{font-family:'Open Sans',Arial,sans-serif;background:var(--cream);min-height
 </div>
 <div class="done-message" id="doneMessage">
 <div class="checkmark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-<h2>D&#283;kujeme za V&#225;&#353; &#269;as!</h2>
-<p>Hovor byl &#250;sp&#283;&#353;n&#283; dokon&#269;en. N&#225;&#353; t&#253;m V&#225;s bude brzy kontaktovat s dal&#353;&#237;mi informacemi.</p>
+<h2>&#270;akujeme za V&#225;&#353; &#269;as!</h2>
+<p>Hovor bol &#250;spe&#353;ne dokon&#269;en. N&#225;&#353; t&#253;m V&#225;s bude brzy kontaktovat s dal&#353;&#237;mi informacemi.</p>
 </div>
 </div>
 <div class="footer">&#169; 2026 <a href="https://ensola.sk" target="_blank">Ensola</a> &#183; Fotovoltika a tepeln&#233; &#269;erpadl&#225;</div>
@@ -260,7 +260,7 @@ function initVapi() {
     stopBlinking();
     avatarSection.classList.remove('visible');
     document.getElementById('stepsSection').style.display = '';
-    document.getElementById('status').textContent = 'Do\u0161lo k chyb\u011b. Obnovte str\u00e1nku a zkuste znovu.';
+    document.getElementById('status').textContent = 'Do\u0161lo k chybe. Obnovte str\u00e1nku a sk\u00faste znova.';
     document.getElementById('callBtn').disabled = false;
   });
 }
@@ -291,7 +291,7 @@ async function toggleCall() {
     console.error('Start error:', e);
     avatarSection.classList.remove('visible');
     document.getElementById('stepsSection').style.display = '';
-    document.getElementById('status').textContent = 'Nepoda\u0159ilo se zah\u00e1jit hovor. Zkontrolujte mikrofon.';
+    document.getElementById('status').textContent = 'Nepodarilo se za\u010da\u0165 hovor. Skontrolujte mikrof&#243;n.';
     btn.disabled = false;
   }
 }
